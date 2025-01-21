@@ -28,7 +28,7 @@ jobs:
       - name: Download bahmni-core OMODs
         env:
           BUCKET_NAME: bahmni-artifacts
-        run: aws s3 cp s3://$BUCKET_NAME/bahmni-lite/release-1.0.2/bahmni-core/latest/ target/ --recursive
+        run: aws s3 cp s3://$BUCKET_NAME/bahmni-lite/release-1.0.2/bahmni-core/ target/ --recursive
       - name: Build docker image
         run: |
           docker build -t openmrs-release:latest -f package/docker/openmrs/Dockerfile .
