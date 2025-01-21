@@ -24,7 +24,11 @@ jobs:
           BUCKET_NAME: bahmni-artifacts
         run: |
           aws s3 cp s3://$BUCKET_NAME/bahmni-lite/patient-identifier-generator/latest/ target/ --recursive
-          aws s3 cp s3://$BUCKET_NAME/bahmni-lite/bahmni-core/latest/ target/ --recursive
+
+      - name: Download bahmni-core OMODs
+        env:
+          BUCKET_NAME: bahmni-artifacts
+        run: aws s3 cp s3://$BUCKET_NAME/bahmni-lite/bahmni-core/latest/ target/ --recursive
 
       - name: Build docker image
         run: docker build -t openmrs:latest -f package/docker/openmrs/Dockerfile .
